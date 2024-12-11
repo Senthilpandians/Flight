@@ -1,0 +1,113 @@
+# Flight Booking System User Stories
+
+## User Story 1: Search Flights
+As a user, I want to search for available flights by providing origin, destination, and travel dates
+### Acceptance Criteria:
+- User can enter origin and destination airports (using 3-letter IATA codes)
+- User can select departure date (must be future date)
+- User can select return date (optional, must be after departure date)
+- System validates airport codes are valid
+- System shows error message for invalid inputs
+- Search results display:
+  - Flight numbers
+  - Departure/arrival times
+  - Available seats
+  - Price
+  - Duration
+- Results are sorted by departure time
+- System handles no results gracefully
+- Search works for both direct and connecting flights
+
+## User Story 2: Flight Selection and Pricing
+As a user, I want to select flights and see detailed pricing information
+### Acceptance Criteria:
+- User can select outbound and return flights independently
+- System displays base fare breakdown
+- System calculates and shows taxes
+- System applies dynamic pricing based on:
+  - Days until departure (closer = more expensive)
+  - Seat availability (fewer seats = more expensive)
+- Price is locked for 10 minutes after selection
+- System shows timer for price lock
+- User can modify selection within price lock period
+
+## User Story 3: Passenger Information
+As a user, I want to enter passenger details for booking
+### Acceptance Criteria:
+- User can enter details for multiple passengers
+- Required fields:
+  - First name (2-50 characters)
+  - Last name (2-50 characters)
+  - Date of birth (must be valid date)
+  - Email (valid format)
+  - Phone number (valid format with country code)
+- System validates age restrictions:
+  - Adults (12+ years)
+  - Children (2-11 years)
+  - Infants (under 2)
+- Maximum 9 passengers per booking
+- At least one adult required per booking
+- System validates maximum infants per adult ratio (1:1)
+
+## User Story 4: Seat Selection
+As a user, I want to select seats for my flight
+### Acceptance Criteria:
+- User can view interactive seat map
+- System shows:
+  - Available seats
+  - Occupied seats
+  - Emergency exit rows
+  - Premium seats with extra cost
+- System prevents selection of occupied seats
+- System validates emergency exit row restrictions
+- User can select seats for all passengers in booking
+- System allows skip seat selection
+- Price updates immediately upon seat selection
+- User can modify seat selection before payment
+
+## User Story 5: Payment Processing
+As a user, I want to pay for my booking securely
+### Acceptance Criteria:
+- User can enter credit card details:
+  - Card number (valid format)
+  - Expiry date (must be future date)
+  - CVV (3-4 digits)
+  - Cardholder name
+- System validates all payment fields
+- System detects card type automatically
+- System applies credit card surcharges
+- System shows final amount before confirmation
+- System processes payment securely
+- System handles declined payments gracefully
+- System prevents double booking
+- Booking confirms only after successful payment
+
+## User Story 6: Booking Management
+As a user, I want to manage my existing bookings
+### Acceptance Criteria:
+- User can retrieve booking using:
+  - Booking reference
+  - Email address
+- System displays booking details:
+  - Flight information
+  - Passenger details
+  - Seat assignments
+  - Payment history
+- User can:
+  - Download booking confirmation
+  - Add extra services
+  - Request cancellation (if eligible)
+  - Submit special requests
+- System shows booking status
+- System enforces modification time limits
+- System calculates refund amounts
+
+## Technical Requirements:
+- Application must handle concurrent users
+- System must maintain data consistency
+- All monetary calculations must use appropriate decimal precision
+- System must log all transactions
+- System must handle timeouts gracefully
+- All user inputs must be sanitized
+- System must implement rate limiting
+- Error handling must be comprehensive
